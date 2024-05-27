@@ -1,4 +1,5 @@
 $('.responsive').slick({
+    arrows:true,
     dots: true,
     infinite: false,
     speed: 300,
