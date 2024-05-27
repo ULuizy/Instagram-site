@@ -13,36 +13,36 @@
 </head>
 <body>
     <h1>Instagram feed 2023</h1>
-    <div> class= "container responsive"></div>
+    <div class="container responsive"></div>
 
     <script>
         const campos = "media_type,media_url";
         const limite = 10;
-        const token = "e8c203641a52179ad2557147cc7309a8";
-        const baseURL = "https://graph.instagram.com/me/media?fields=${campos}&acess_token=${token}&limit=${limite}";
+        const id = "YOUR_INSTAGRAM_ID";
+        const baseURL = `https://graph.instagram.com/${id}/media?fields=${campos}&limit=${limite}&access_token=816723780301945`;
 
-    fetch(baseURL)
-        .then(response => response.json())
-        .then((data) => {
-            const container = document.querySelector(".container");
-            data.data.forEach((img) => {
-                const mediaType = img.media_type;
-                const mediaURL = img.media_url;
+        fetch(baseURL)
+            .then(response => response.json())
+            .then((data) => {
+                const container = document.querySelector(".container");
+                data.data.forEach((img) => {
+                    const mediaType = img.media_type;
+                    const mediaURL = img.media_url;
 
-            if (mediaType === "VIDEO") {
-                const video = document.createElement("video");
-                video.src = mediaUrl;
-                video.classList.add("container-video");
-                container.appendChild(video);
-            } else {
-                const img = document.createElement("img");
-                img.src = mediaURL;
-                img.classList.add("container-img");
-                container.appendChild(img);
-            }
-        });
-    })
-        .catch((error) => console.log (error));
+                    if (mediaType === "VIDEO") {
+                        const video = document.createElement("video");
+                        video.src = mediaURL;
+                        video.classList.add("container-video");
+                        container.appendChild(video);
+                    } else {
+                        const imgElement = document.createElement("img");
+                        imgElement.src = mediaURL;
+                        imgElement.classList.add("container-img");
+                        container.appendChild(imgElement);
+                    }
+                });
+            })
+            .catch((error) => console.log(error));
     </script>
     <script src="carousel.js"></script>
 </body>
